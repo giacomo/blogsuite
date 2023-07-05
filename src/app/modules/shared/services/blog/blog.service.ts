@@ -13,8 +13,8 @@ export class BlogService {
     }
 
     getBlogItem(slug: string) {
-        // check if slug contains numbers _ or characters
-        if (!slug.match(/^[a-zA-Z0-9_]+$/)) {
+        // check if slug contains numbers _ , - or characters
+        if (!slug.match(/^[a-zA-Z0-9_-]+$/)) {
             return of({
                 header: {
                     title: '404',
