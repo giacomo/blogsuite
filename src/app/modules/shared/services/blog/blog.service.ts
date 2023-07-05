@@ -12,9 +12,19 @@ export class BlogService {
     ) {
     }
 
-    getBlogItem(slug$: string) {
+    getBlogItem(slug: string) {
+        // check if slug contains numbers _ or characters
+        if (!slug.match(/^[a-zA-Z0-9_]+$/)) {
+            return of({
+                header: {
+                    title: '404',
+                },
+                body: '<p>Page not found!</p>'
+            });
+        }
+
         // read the assets folder and return the appropriate MD file
-        return this.http.get(`assets/articles/${slug$}.md`, { responseType: 'text' }).pipe(
+        return this.http.get(`assets/articles/${slug}.md`, { responseType: 'text' }).pipe(
             // split the contents of the MD file into an array
             // split the array into a header and a body
             map((contents: string) => contents.split('---')),
