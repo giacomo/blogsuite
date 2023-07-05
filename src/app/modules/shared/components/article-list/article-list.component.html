@@ -1,0 +1,13 @@
+<ng-container *ngIf="articles$ | async as articleList">
+    <ul class="list-group">
+        <li class="list-group-item" *ngFor="let article of articleList.results">
+            <div class="content">
+                <h4>{{article.title}}</h4>
+                <p>{{article.description}}</p>
+            </div>
+            <div class="controls">
+                <a [routerLink]="['/blog', article.slug]">Read more &raquo;</a>
+            </div>
+        </li>
+    </ul>
+</ng-container>

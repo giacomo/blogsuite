@@ -55,4 +55,21 @@ export class BlogService {
 
         );
     }
+
+    getBlogItems() {
+        // read the assets folder and return the content of list.json
+        return this.http.get('assets/articles/list.json').pipe(
+            // map the list.json into an array of objects
+            map((list: any) => {
+                return {
+                    results: list
+                }
+            }),
+            catchError(() => {
+                return of({
+                    results: []
+                })
+            })
+        );
+    }
 }

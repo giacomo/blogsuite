@@ -80,6 +80,12 @@ const create = () => {
             console.log(err);
         }
         console.log(`Successfully created file: ${fileName}`);
+
+        // check if the user wants to update the list.json file
+        const updateList = readline.question('Do you want to update the list.json file? (y/n): ');
+        if (updateList === 'y') {
+            generateList();
+        }
     });
 };
 
@@ -148,7 +154,7 @@ const generateList = () => {
         list.push({
             title,
             description,
-            filename: file
+            slug: file.replace('.md', '')
         });
     });
 
