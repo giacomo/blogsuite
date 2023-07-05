@@ -1,0 +1,4 @@
+<ng-container *ngIf="item$ | async as item">
+    <h1>{{item.header.title}}</h1>
+    <div [innerHTML]="item.body"></div>
+</ng-container>
