@@ -8,8 +8,8 @@ const availableCommands = [
     },
     {
         name: 'create',
-        description: 'creates a new blog article with the given title',
-        usage: 'create <title blog article>'
+        description: 'creates a new blog article',
+        usage: 'create'
     },
     {
         name: 'list',

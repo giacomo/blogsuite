@@ -1,5 +1,9 @@
 <ng-container *ngIf="articles$ | async as articleList">
     <ul class="list-group">
+        <li *ngIf="articleList.results.length === 0">
+            <p>No articles found.</p>
+        </li>
+
         <li class="list-group-item" *ngFor="let article of articleList.results">
             <div class="content">
                 <h4>{{article.title}}</h4>

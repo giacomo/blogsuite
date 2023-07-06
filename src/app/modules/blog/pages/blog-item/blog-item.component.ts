@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { BlogService } from '../../../shared/services/blog/blog.service';
-import { Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, switchMap, tap } from 'rxjs';
 
 @Component({
     selector: 'app-blog-item',
@@ -8,16 +8,23 @@ import { Observable, tap } from 'rxjs';
     styleUrls: ['./blog-item.component.scss']
 })
 export class BlogItemComponent implements OnInit {
-     @Input('slug') slug$!: string;
-     item$: Observable<any> | undefined;
+    private fileNameSubject$ = new BehaviorSubject<string>('');
 
-     constructor(
-         private blogService: BlogService
-     ) { }
+    @Input()
+    set slug(slug: string) {
+        this.fileNameSubject$.next(slug);
+    }
 
-     ngOnInit(): void {
-        this.item$ = this.blogService.getBlogItem(this.slug$).pipe(
-            tap((item: any) => console.log(item))
+    item$: Observable<any> | undefined;
+
+    constructor(
+        private blogService: BlogService
+    ) {
+    }
+
+    ngOnInit(): void {
+        this.item$ = this.fileNameSubject$.pipe(
+            switchMap((slug: string) => this.blogService.getBlogItem(slug)),
         );
-     }
+    }
 }
