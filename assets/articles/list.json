@@ -1,0 +1,12 @@
+[
+  {
+    "title": "New Blog Started",
+    "description": "This is the first blog post on my new blog. I hope you like it!",
+    "slug": "05-04-2022_new_blog_started"
+  },
+  {
+    "title": "This is an awesome blog article",
+    "description": "this is short description",
+    "slug": "06-07-2023-this_is_an_awesome_blog_article"
+  }
+]
